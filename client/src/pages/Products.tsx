@@ -30,7 +30,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/products");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -40,7 +40,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
 
   const addToCart = async (productId: number) => {
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/cart", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/cart`, {
         user_id: 1,
         product_id: productId,
         quantity: 1,
@@ -62,8 +62,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
       product.category.toLowerCase().includes(search);
 
     const matchesCategory =
-      !category ||
-      product.category.toLowerCase() === category.toLowerCase();
+      !category || product.category.toLowerCase() === category.toLowerCase();
 
     return matchesSearch && matchesCategory;
   });

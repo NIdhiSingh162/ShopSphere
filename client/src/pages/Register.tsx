@@ -14,10 +14,10 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/auth/register", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         name,
         email,
-        password
+        password,
       });
 
       setMessage("Registration successful!");
@@ -74,9 +74,7 @@ const Register = () => {
             />
           </div>
 
-          <button className="btn btn-warning w-100">
-            Register
-          </button>
+          <button className="btn btn-warning w-100">Register</button>
         </form>
 
         <p className="mt-3 text-center">

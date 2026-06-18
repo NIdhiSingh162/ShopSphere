@@ -23,18 +23,29 @@ const ProductDetails = () => {
   }, [id]);
 
   const fetchProduct = async () => {
-    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
-    setProduct(res.data);
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
+      setProduct(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const addToCart = async () => {
-    await axios.post("${import.meta.env.VITE_API_URL}/api/cart", {
-      user_id: 1,
-      product_id: product?.id,
-      quantity: 1
-    });
+    if (!product) return;
 
-    setMessage("Product added to cart successfully!");
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/cart`, {
+        user_id: 1,
+        product_id: product.id,
+        quantity: 1,
+      });
+
+      setMessage("Product added to cart successfully!");
+    } catch (error) {
+      console.log(error);
+      setMessage("Failed to add product to cart");
+    }
   };
 
   if (!product) {
@@ -61,11 +72,8 @@ const ProductDetails = () => {
         <div className="product-detail-info">
           <h2>{product.name}</h2>
           <p className="text-muted">{product.category}</p>
-
           <h3 className="price">₹{product.price}</h3>
-
           <p>{product.description}</p>
-
           <p><strong>Brand:</strong> {product.brand}</p>
           <p><strong>Stock:</strong> {product.stock}</p>
 
@@ -73,9 +81,7 @@ const ProductDetails = () => {
             Add To Cart
           </button>
 
-          <button className="btn btn-success">
-            Buy Now
-          </button>
+          <button className="btn btn-success">Buy Now</button>
         </div>
       </div>
     </div>

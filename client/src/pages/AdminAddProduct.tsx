@@ -28,7 +28,7 @@ const AdminAddProduct = () => {
       }
 
       const res = await axios.post(
-        "${import.meta.env.VITE_API_URL}/api/products",
+        `${import.meta.env.VITE_API_URL}/api/products",
         formData
       );
 

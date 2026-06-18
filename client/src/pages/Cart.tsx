@@ -47,9 +47,9 @@ const Cart = () => {
         0
       );
 
-      await axios.post("${import.meta.env.VITE_API_URL}/api/orders", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/orders`, {
         user_id: userId,
-        total_amount: total
+        total_amount: total,
       });
 
       setMessage("Order placed successfully!");
@@ -80,7 +80,7 @@ const Cart = () => {
                 <div className="cart-img">
                   {item.image ? (
                     <img
-                      src={`${item.image}`}
+                      src={`${import.meta.env.VITE_API_URL}/uploads/${item.image}`}
                       alt={item.name}
                       className="cart-product-image"
                     />
@@ -109,7 +109,6 @@ const Cart = () => {
             <div className="summary-card">
               <h4>Price Details</h4>
               <hr />
-
               <p>Total Items: {cartItems.length}</p>
               <h5>Total Amount: ₹{total}</h5>
 

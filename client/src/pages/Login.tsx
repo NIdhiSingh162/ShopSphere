@@ -13,9 +13,9 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("${import.meta.env.VITE_API_URL}/api/auth/login", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         email,
-        password
+        password,
       });
 
       localStorage.setItem("token", res.data.token);
@@ -61,9 +61,7 @@ const Login = () => {
             />
           </div>
 
-          <button className="btn btn-warning w-100">
-            Login
-          </button>
+          <button className="btn btn-warning w-100">Login</button>
         </form>
 
         <p className="mt-3 text-center">
