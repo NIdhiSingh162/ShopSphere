@@ -23,7 +23,7 @@ const AdminProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://10.52.129.168:5000/api/products");
+      const res = await axios.get("/api/products");
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ const AdminProducts = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://10.52.129.168:5000/api/products/${id}`);
+      await axios.delete(`/api/products/${id}`);
       alert("Product Deleted Successfully");
       fetchProducts();
     } catch (error) {
@@ -56,7 +56,7 @@ const AdminProducts = () => {
           <div key={product.id} className="col-md-4 mb-4">
             <div className="admin-product-card">
               <img
-                src={`http://10.52.129.168:5000${product.image}`}
+                src={`${product.image}`}
                 alt={product.name}
                 className="admin-product-image"
               />

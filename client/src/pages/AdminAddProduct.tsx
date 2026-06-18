@@ -28,7 +28,7 @@ const AdminAddProduct = () => {
       }
 
       const res = await axios.post(
-        "http://10.52.129.168:5000/api/products",
+        "/api/products",
         formData
       );
 

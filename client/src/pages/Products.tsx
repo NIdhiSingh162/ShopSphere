@@ -30,7 +30,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://10.52.129.168:5000/api/products");
+      const res = await axios.get("/api/products");
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -40,7 +40,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
 
   const addToCart = async (productId: number) => {
     try {
-      await axios.post("http://10.52.129.168:5000/api/cart", {
+      await axios.post("/api/cart", {
         user_id: 1,
         product_id: productId,
         quantity: 1,
@@ -84,7 +84,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
             <div className="col-md-3" key={product.id}>
               <div className="product-card">
                 <img
-                  src={`http://10.52.129.168:5000${product.image}`}
+                  src={`${product.image}`}
                   alt={product.name}
                   className="product-image"
                 />

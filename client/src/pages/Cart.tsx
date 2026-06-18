@@ -21,7 +21,7 @@ const Cart = () => {
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get(`http://10.52.129.168:5000/api/cart/${userId}`);
+      const res = await axios.get(`/api/cart/${userId}`);
       setCartItems(res.data);
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ const Cart = () => {
 
   const removeFromCart = async (cartId: number) => {
     try {
-      await axios.delete(`http://10.52.129.168:5000/api/cart/${cartId}`);
+      await axios.delete(`/api/cart/${cartId}`);
       setMessage("Product removed from cart");
       fetchCart();
     } catch (error) {
@@ -47,7 +47,7 @@ const Cart = () => {
         0
       );
 
-      await axios.post("http://10.52.129.168:5000/api/orders", {
+      await axios.post("/api/orders", {
         user_id: userId,
         total_amount: total
       });
@@ -80,7 +80,7 @@ const Cart = () => {
                 <div className="cart-img">
                   {item.image ? (
                     <img
-                      src={`http://10.52.129.168:5000${item.image}`}
+                      src={`${item.image}`}
                       alt={item.name}
                       className="cart-product-image"
                     />

@@ -26,12 +26,12 @@ const AdminDashboard = () => {
   }, []);
 
   const fetchStats = async () => {
-    const res = await axios.get("http://10.52.129.168:5000/api/admin/stats");
+    const res = await axios.get("/api/admin/stats");
     setStats(res.data);
   };
 
   const fetchRecentOrders = async () => {
-    const res = await axios.get("http://10.52.129.168:5000/api/orders");
+    const res = await axios.get("/api/orders");
     setRecentOrders(res.data.slice(0, 5));
   };
 

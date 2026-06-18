@@ -20,7 +20,7 @@ const EditProduct = () => {
   }, []);
 
   const fetchProduct = async () => {
-    const res = await axios.get(`http://10.52.129.168:5000/api/products/${id}`);
+    const res = await axios.get(`/api/products/${id}`);
     const p = res.data;
 
     setName(p.name);
@@ -49,7 +49,7 @@ const EditProduct = () => {
       formData.set("image", newImage);
     }
 
-    await axios.put(`http://10.52.129.168:5000/api/products/${id}`, formData);
+    await axios.put(`/api/products/${id}`, formData);
 
     alert("Product Updated Successfully");
     navigate("/admin/products");
@@ -61,7 +61,7 @@ const EditProduct = () => {
 
       {oldImage && (
         <img
-          src={`http://10.52.129.168:5000${oldImage}`}
+          src={`${oldImage}`}
           alt={name}
           style={{
             width: "180px",

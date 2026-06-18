@@ -18,7 +18,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        "http://10.52.129.168:5000/api/orders/1"
+        "/api/orders/1"
       );
 
       setOrders(res.data);

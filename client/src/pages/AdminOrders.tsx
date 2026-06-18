@@ -17,12 +17,12 @@ const AdminOrders = () => {
   }, []);
 
   const fetchOrders = async () => {
-    const res = await axios.get("http://10.52.129.168:5000/api/orders");
+    const res = await axios.get("/api/orders");
     setOrders(res.data);
   };
 
   const updateStatus = async (id: number, status: string) => {
-    await axios.put(`http://10.52.129.168:5000/api/orders/${id}`, {
+    await axios.put(`/api/orders/${id}`, {
       status,
     });
 
