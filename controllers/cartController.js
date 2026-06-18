@@ -4,6 +4,12 @@ const db = require("../config/db");
 const addToCart = (req, res) => {
   const { user_id, product_id, quantity } = req.body;
 
+  if (!user_id || !product_id || !quantity) {
+    return res.status(400).json({
+      message: "user_id, product_id and quantity are required",
+    });
+  }
+
   const sql = `
     INSERT INTO cart (user_id, product_id, quantity)
     VALUES (?, ?, ?)
@@ -11,12 +17,13 @@ const addToCart = (req, res) => {
 
   db.query(sql, [user_id, product_id, quantity], (err, result) => {
     if (err) {
+      console.log("Add To Cart DB Error:", err.message);
       return res.status(500).json({ message: err.message });
     }
-    
-    res.status(201).json({  
-      message: "Product Added to Cart", 
-      cartId: result.insertId 
+
+    res.status(201).json({
+      message: "Product Added to Cart",
+      cartId: result.insertId,
     });
   });
 };
@@ -34,6 +41,7 @@ const getCart = (req, res) => {
 
   db.query(sql, [user_id], (err, result) => {
     if (err) {
+      console.log("Get Cart DB Error:", err.message);
       return res.status(500).json({ message: err.message });
     }
 
@@ -47,13 +55,18 @@ const removeFromCart = (req, res) => {
 
   const sql = "DELETE FROM cart WHERE id = ?";
 
-  db.query(sql, [id], (err) => {
+  db.query(sql, [id], (err, result) => {
     if (err) {
+      console.log("Remove Cart DB Error:", err.message);
       return res.status(500).json({ message: err.message });
     }
-  
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Cart item not found" });
+    }
+
     res.status(200).json({
-      message: "Product Removed from Cart"
+      message: "Product Removed from Cart",
     });
   });
 };
@@ -61,5 +74,5 @@ const removeFromCart = (req, res) => {
 module.exports = {
   addToCart,
   getCart,
-  removeFromCart
+  removeFromCart,
 };

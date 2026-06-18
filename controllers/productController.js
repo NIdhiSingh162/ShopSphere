@@ -2,12 +2,7 @@ const db = require("../config/db");
 
 // ADD PRODUCT WITH IMAGE
 const addProduct = (req, res) => {
-  const name = req.body.name;
-  const description = req.body.description;
-  const price = req.body.price;
-  const category = req.body.category;
-  const brand = req.body.brand;
-  const stock = req.body.stock;
+  const { name, description, price, category, brand, stock } = req.body;
 
   const image = req.file ? `/uploads/${req.file.filename}` : "";
 
@@ -15,7 +10,7 @@ const addProduct = (req, res) => {
     return res.status(400).json({
       message: "Name and price are required",
       body: req.body,
-      file: req.file
+      file: req.file,
     });
   }
 
@@ -29,19 +24,15 @@ const addProduct = (req, res) => {
     sql,
     [name, description, price, category, brand, stock, image],
     (err, result) => {
-      console.log("DB ERROR:", err);
-      console.log("DB RESULT:", result);
-
       if (err) {
-        return res.status(500).json({
-          message: err.message
-        });
+        console.log("Add Product DB Error:", err.message);
+        return res.status(500).json({ message: err.message });
       }
 
       res.status(201).json({
         message: "Product Added Successfully",
         productId: result.insertId,
-        image: image
+        image,
       });
     }
   );
@@ -53,9 +44,8 @@ const getAllProducts = (req, res) => {
 
   db.query(sql, (err, result) => {
     if (err) {
-      return res.status(500).json({
-        message: err.message
-      });
+      console.log("Get Products DB Error:", err.message);
+      return res.status(500).json({ message: err.message });
     }
 
     res.status(200).json(result);
@@ -70,15 +60,12 @@ const getSingleProduct = (req, res) => {
 
   db.query(sql, [id], (err, result) => {
     if (err) {
-      return res.status(500).json({
-        message: err.message
-      });
+      console.log("Get Single Product DB Error:", err.message);
+      return res.status(500).json({ message: err.message });
     }
 
     if (result.length === 0) {
-      return res.status(404).json({
-        message: "Product not found"
-      });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     res.status(200).json(result[0]);
@@ -88,13 +75,7 @@ const getSingleProduct = (req, res) => {
 // UPDATE PRODUCT WITH IMAGE
 const updateProduct = (req, res) => {
   const { id } = req.params;
-
-  const name = req.body.name;
-  const description = req.body.description;
-  const price = req.body.price;
-  const category = req.body.category;
-  const brand = req.body.brand;
-  const stock = req.body.stock;
+  const { name, description, price, category, brand, stock } = req.body;
 
   const image = req.file ? `/uploads/${req.file.filename}` : req.body.image;
 
@@ -109,20 +90,15 @@ const updateProduct = (req, res) => {
     [name, description, price, category, brand, stock, image, id],
     (err, result) => {
       if (err) {
-        return res.status(500).json({
-          message: err.message
-        });
+        console.log("Update Product DB Error:", err.message);
+        return res.status(500).json({ message: err.message });
       }
 
       if (result.affectedRows === 0) {
-        return res.status(404).json({
-          message: "Product not found"
-        });
+        return res.status(404).json({ message: "Product not found" });
       }
 
-      res.status(200).json({
-        message: "Product Updated Successfully"
-      });
+      res.status(200).json({ message: "Product Updated Successfully" });
     }
   );
 };
@@ -135,20 +111,15 @@ const deleteProduct = (req, res) => {
 
   db.query(sql, [id], (err, result) => {
     if (err) {
-      return res.status(500).json({
-        message: err.message
-      });
+      console.log("Delete Product DB Error:", err.message);
+      return res.status(500).json({ message: err.message });
     }
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({
-        message: "Product not found"
-      });
+      return res.status(404).json({ message: "Product not found" });
     }
 
-    res.status(200).json({
-      message: "Product Deleted Successfully"
-    });
+    res.status(200).json({ message: "Product Deleted Successfully" });
   });
 };
 
@@ -157,5 +128,5 @@ module.exports = {
   getAllProducts,
   getSingleProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 };
