@@ -23,7 +23,7 @@ const AdminProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("/api/products");
+      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/products");
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ const AdminProducts = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`/api/products/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
       alert("Product Deleted Successfully");
       fetchProducts();
     } catch (error) {

@@ -9,17 +9,18 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
-app.use("/api/admin", adminRoutes);
 
 app.get("/", (req, res) => {
   res.send("ShopSphere API Running...");
 });
 
+app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);

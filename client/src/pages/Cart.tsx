@@ -21,7 +21,7 @@ const Cart = () => {
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get(`/api/cart/${userId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart/${userId}`);
       setCartItems(res.data);
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ const Cart = () => {
 
   const removeFromCart = async (cartId: number) => {
     try {
-      await axios.delete(`/api/cart/${cartId}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${cartId}`);
       setMessage("Product removed from cart");
       fetchCart();
     } catch (error) {
@@ -47,7 +47,7 @@ const Cart = () => {
         0
       );
 
-      await axios.post("/api/orders", {
+      await axios.post("${import.meta.env.VITE_API_URL}/api/orders", {
         user_id: userId,
         total_amount: total
       });

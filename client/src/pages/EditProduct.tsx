@@ -20,7 +20,7 @@ const EditProduct = () => {
   }, []);
 
   const fetchProduct = async () => {
-    const res = await axios.get(`/api/products/${id}`);
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
     const p = res.data;
 
     setName(p.name);
@@ -49,7 +49,7 @@ const EditProduct = () => {
       formData.set("image", newImage);
     }
 
-    await axios.put(`/api/products/${id}`, formData);
+    await axios.put(`${import.meta.env.VITE_API_URL}/api/products/${id}`, formData);
 
     alert("Product Updated Successfully");
     navigate("/admin/products");

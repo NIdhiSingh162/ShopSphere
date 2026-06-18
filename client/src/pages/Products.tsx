@@ -30,7 +30,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("/api/products");
+      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/products");
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -40,7 +40,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
 
   const addToCart = async (productId: number) => {
     try {
-      await axios.post("/api/cart", {
+      await axios.post("${import.meta.env.VITE_API_URL}/api/cart", {
         user_id: 1,
         product_id: productId,
         quantity: 1,

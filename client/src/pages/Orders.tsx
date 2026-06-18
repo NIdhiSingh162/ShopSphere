@@ -18,7 +18,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        "/api/orders/1"
+        "${import.meta.env.VITE_API_URL}/api/orders/1"
       );
 
       setOrders(res.data);

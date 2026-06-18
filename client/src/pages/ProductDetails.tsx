@@ -23,12 +23,12 @@ const ProductDetails = () => {
   }, [id]);
 
   const fetchProduct = async () => {
-    const res = await axios.get(`/api/products/${id}`);
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
     setProduct(res.data);
   };
 
   const addToCart = async () => {
-    await axios.post("/api/cart", {
+    await axios.post("${import.meta.env.VITE_API_URL}/api/cart", {
       user_id: 1,
       product_id: product?.id,
       quantity: 1

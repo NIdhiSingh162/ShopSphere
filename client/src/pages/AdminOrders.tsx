@@ -17,12 +17,12 @@ const AdminOrders = () => {
   }, []);
 
   const fetchOrders = async () => {
-    const res = await axios.get("/api/orders");
+    const res = await axios.get("${import.meta.env.VITE_API_URL}/api/orders");
     setOrders(res.data);
   };
 
   const updateStatus = async (id: number, status: string) => {
-    await axios.put(`/api/orders/${id}`, {
+    await axios.put(`${import.meta.env.VITE_API_URL}/api/orders/${id}`, {
       status,
     });
 
