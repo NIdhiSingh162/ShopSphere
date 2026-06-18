@@ -28,12 +28,11 @@ const AdminAddProduct = () => {
       }
 
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/products",
+        `${import.meta.env.VITE_API_URL}/api/products`,
         formData
       );
 
       alert("Product Added Successfully");
-
       console.log(res.data);
 
       setName("");
@@ -62,13 +61,13 @@ const AdminAddProduct = () => {
           required
         />
 
-        {/* <input
+        <input
           type="text"
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-        /> */}
+        />
 
         <input
           type="number"
@@ -111,9 +110,7 @@ const AdminAddProduct = () => {
           required
         />
 
-        <button type="submit">
-          Add Product
-        </button>
+        <button type="submit">Add Product</button>
       </form>
     </div>
   );
