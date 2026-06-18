@@ -36,3 +36,20 @@ app.post("/test-product", (req, res) => {
   console.log("TEST PRODUCT HIT");
   res.json({ message: "test product route working" });
 });
+
+const db = require("./config/db");
+
+app.get("/debug-db", (req, res) => {
+  db.query("SELECT DATABASE() AS dbName", (err, dbResult) => {
+    if (err) return res.json({ error: err.message });
+
+    db.query("SHOW TABLES", (err, tables) => {
+      if (err) return res.json({ error: err.message });
+
+      res.json({
+        database: dbResult[0].dbName,
+        tables: tables,
+      });
+    });
+  });
+});
