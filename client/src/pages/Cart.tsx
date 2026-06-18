@@ -80,7 +80,7 @@ const Cart = () => {
                 <div className="cart-img">
                   {item.image ? (
                     <img
-                      src={`${import.meta.env.VITE_API_URL}/uploads/${item.image}`}
+                      src={`${import.meta.env.VITE_API_URL}${item.image}`}
                       alt={item.name}
                       className="cart-product-image"
                     />

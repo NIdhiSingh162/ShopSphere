@@ -60,7 +60,7 @@ const ProductDetails = () => {
         <div className="detail-image">
           {product.image ? (
             <img
-              src={`${import.meta.env.VITE_API_URL}/uploads/${product.image}`}
+              src={`${import.meta.env.VITE_API_URL}${product.image}`}
               alt={product.name}
               className="detail-product-img"
             />
