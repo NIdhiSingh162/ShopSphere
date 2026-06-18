@@ -84,7 +84,7 @@ const Products = ({ searchTerm }: ProductsProps) => {
             <div className="col-md-3" key={product.id}>
               <div className="product-card">
                 <img
-                  src={`${product.image}`}
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${product.image}`}
                   alt={product.name}
                   className="product-image"
                 />

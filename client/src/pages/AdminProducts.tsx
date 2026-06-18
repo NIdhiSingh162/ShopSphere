@@ -56,7 +56,7 @@ const AdminProducts = () => {
           <div key={product.id} className="col-md-4 mb-4">
             <div className="admin-product-card">
               <img
-                src={`${product.image}`}
+                src={`${import.meta.env.VITE_API_URL}/uploads/${product.image}`}
                 alt={product.name}
                 className="admin-product-image"
               />
