@@ -17,7 +17,7 @@ const AdminOrders = () => {
   }, []);
 
   const fetchOrders = async () => {
-    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders");
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders`);
     setOrders(res.data);
   };
 
@@ -71,9 +71,7 @@ const AdminOrders = () => {
                 <select
                   className="form-select"
                   value={order.status}
-                  onChange={(e) =>
-                    updateStatus(order.id, e.target.value)
-                  }
+                  onChange={(e) => updateStatus(order.id, e.target.value)}
                 >
                   <option>Pending</option>
                   <option>Processing</option>
