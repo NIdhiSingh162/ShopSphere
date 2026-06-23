@@ -1,40 +1,43 @@
 # ShopSphere 🛒
 
-ShopSphere is a full-stack e-commerce web application built using React, TypeScript, Node.js, Express.js, and MySQL.
+A full-stack E-Commerce Web Application built using React, TypeScript, Node.js, Express.js, and MySQL. ShopSphere allows users to browse products, manage carts, place orders, and provides an admin dashboard for product and order management.
 
 ## Features
 
-- User Registration & Login
-- Product Listing
-- Product Search
-- Product Details Page
-- Shopping Cart
-- Admin Dashboard
-- Add Products
-- Edit Products
-- Delete Products
-- Image Upload
-- Order Management
-- Responsive UI
+* User Registration & Login
+* Product Listing
+* Product Search
+* Product Details Page
+* Shopping Cart
+* Admin Dashboard
+* Add Products
+* Edit Products
+* Delete Products
+* Image Upload
+* Order Management
+* Responsive UI
 
 ## Tech Stack
 
 ### Frontend
-- React
-- TypeScript
-- Axios
-- React Router DOM
+
+* React
+* TypeScript
+* Axios
+* React Router DOM
 
 ### Backend
-- Node.js
-- Express.js
+
+* Node.js
+* Express.js
 
 ### Database
-- MySQL
+
+* MySQL
 
 ## Project Structure
 
-```
+```text
 ShopSphere/
 │
 ├── client/
@@ -74,13 +77,21 @@ npm install
 npm start
 ```
 
+## Live Demo
+
+Frontend:
+https://shopsphere-frontend.vercel.app
+
+Backend:
+https://shopsphere-9j62.onrender.com
+
 ## Future Improvements
 
-- Payment Gateway Integration
-- Wishlist Feature
-- Product Reviews & Ratings
-- Order Tracking
-- Email Notifications
+* Payment Gateway Integration
+* Wishlist Feature
+* Product Reviews & Ratings
+* Order Tracking
+* Email Notifications
 
 ## Author
 
