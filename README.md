@@ -74,27 +74,6 @@ npm install
 npm start
 ```
 
-## Environment Variables
-
-Create a `.env` file inside the server folder.
-
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=shopsphere
-PORT=5000
-```
-
-## Screenshots
-
-- Home Page
-- Product Page
-- Cart Page
-- Admin Dashboard
-
-(Add screenshots here)
-
 ## Future Improvements
 
 - Payment Gateway Integration
